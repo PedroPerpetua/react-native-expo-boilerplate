@@ -14,6 +14,16 @@
     "sourceType": "module"
   },
   "rules": {
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never",
+        "json": "always"
+      }
+    ],
     "no-use-before-define": [
       "error",
       { "variables": false }
@@ -27,6 +37,14 @@
       { "extensions": [".jsx", ".tsx"] }
     ],
     "react/style-prop-object": "off",
-    "react-native/no-color-literals": "off"
+    "react-native/no-color-literals": "off",
+    "react-native/no-raw-text": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
