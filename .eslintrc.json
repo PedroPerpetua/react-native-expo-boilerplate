@@ -1,49 +1,147 @@
 {
   "extends": [
     "airbnb",
+    "airbnb-typescript",
     "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-native/all",
-    "prettier",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react", "react-native", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
+    "project": "./tsconfig.json",
     "sourceType": "module"
   },
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
   "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
     "import/extensions": [
       "error",
       {
-        "js": "never",
-        "jsx": "never",
+        "json": "always",
+        "svg": "always",
         "ts": "never",
-        "tsx": "never",
-        "json": "always"
+        "tsx": "never"
       }
     ],
-    "no-use-before-define": [
+    "import/order": [
       "error",
-      { "variables": false }
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "distinctGroup": false,
+        "groups": [
+          [
+            "builtin",
+            "external"
+          ],
+          [
+            "parent",
+            "sibling"
+          ],
+          "index"
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "group": "builtin",
+            "pattern": "react",
+            "position": "before"
+          },
+          {
+            "group": "index",
+            "pattern": "@**/**/*.css",
+            "position": "before"
+          },
+          {
+            "group": "index",
+            "pattern": "**/*.css",
+            "position": "after"
+          },
+          {
+            "group": "index",
+            "pattern": "./**/*.css",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "warnOnUnassignedImports": true
+      }
     ],
-    "prettier/prettier": [
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "object-curly-newline": [
       "error",
-      { "singleQuote": true, "tabWidth": 2 }
+      {
+        "ImportDeclaration": {
+          "minProperties": 5,
+          "multiline": true
+        },
+        "ObjectPattern": {
+          "multiline": true
+        }
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "react/jsx-curly-spacing": [
+      "error",
+      {
+        "children": {
+          "when": "always"
+        },
+        "when": "never"
+      }
     ],
     "react/jsx-filename-extension": [
       "error",
-      { "extensions": [".jsx", ".tsx"] }
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
     ],
-    "react/style-prop-object": "off",
-    "react-native/no-color-literals": "off",
-    "react-native/no-raw-text": "off"
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "exceptions": []
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/style-prop-object": "off"
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ],
+        "paths": [
+          "src"
+        ]
       }
     }
   }
